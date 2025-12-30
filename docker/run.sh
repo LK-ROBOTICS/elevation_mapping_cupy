@@ -1,5 +1,5 @@
 #!/bin/bash
-IMAGE_NAME="mktk1117/elevation_mapping_cupy:latest"
+IMAGE_NAME="elevation_mapping_cupy"
 
 # Define environment variables for enabling graphical output for the container.
 XSOCK=/tmp/.X11-unix
@@ -42,6 +42,7 @@ RUN_COMMAND="docker run \
   -v$(pwd)/.etc/group:/etc/group \
   -v/media:/media \
   --gpus all \
+  --env="NVIDIA_DRIVER_CAPABILITIES=all" \
   -it $IMAGE_NAME"
 echo -e "[run.sh]: \e[1;32mThe final run command is\n\e[0;35m$RUN_COMMAND\e[0m."
 $RUN_COMMAND
